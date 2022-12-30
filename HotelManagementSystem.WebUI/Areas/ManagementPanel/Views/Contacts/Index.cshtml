@@ -1,0 +1,125 @@
+﻿@model HotelManagementSystem.WebUI.Models.Contact
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+    <a href="@Url.Action("Edit","Contacts", new { id = Model.ContactId })" class="btn btn-primary right">Düzenle</a>
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">Telefon No</h5>
+                                        <br />
+                                        <h5 class="mb-0">@Model.PhoneNumber</h5>
+                                    </div>
+                                    <div class="widgets-icons bg-light-primary text-primary rounded-circle">
+                                        <i class="bx bx-phone"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">Email</h5>
+                                        <br />
+                                        <h6 class="mb-0">@Model.Email</h6>
+                                    </div>
+                                    <div class="widgets-icons bg-light-danger text-danger rounded-circle">
+                                        <i class="bx bx-envelope"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">Posta Kodu</h5>
+                                        <br />
+                                        <h5 class="mb-0">@Model.ZipCode</h5>
+                                    </div>
+                                    <div class="widgets-icons bg-light-success text-success rounded-circle">
+                                        <i class="bx bx-phone"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">Adres</h5>
+                                        <br />
+                                        <h6 class="mb-0">@Html.Raw(Model.Address)</h6>
+                                    </div>
+                                    <div class="widgets-icons bg-light-info text-info rounded-circle">
+                                        <i class="bx bx-map"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">Harita Koordinatları</h5>
+                                        <br />
+                                        <h6 class="mb-0">@Html.Raw(Model.Map)</h6>
+                                    </div>
+                                    <div class="widgets-icons bg-light-warning text-warning rounded-circle">
+                                        <i class="bx bx-map"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="col-12 col-lg-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h5 class="mb-0 font-weight-bold">@Model.Title</h5>
+                                        <br />
+                                        <img src="@Model.ImageURL" width="200" class="center" />
+                                        <br />
+                                        <h6 class="mb-0">@Html.Raw(Model.Description)</h6>
+                                        <br />
+                                    </div>
+                                    <div class="widgets-icons bg-dark-blue text-white rounded-circle">
+                                        <i class="bx bx-info-circle"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

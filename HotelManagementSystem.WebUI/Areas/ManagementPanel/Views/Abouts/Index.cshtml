@@ -1,0 +1,23 @@
+﻿@model HotelManagementSystem.WebUI.Models.About
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<a class="btn btn-secondary m-1 px-5" href="@Url.Action("Edit", "Abouts", new {id = Model.AboutId })">Düzenle</a>
+
+
+<div class="row"> 
+    <div class="col-12 col-lg-12 col-xl-12">
+        <div class="card mb-3 text-center">
+            <div class="card-body">
+                <img src="@Model.ImageURL" class="center" alt="" width="250">
+                <h5 class="card-title">@Model.Title</h5>
+                <p class="card-text">@Html.Raw(Model.Description)</p>
+
+            </div>
+        </div>
+    </div>
+</div>
+ 

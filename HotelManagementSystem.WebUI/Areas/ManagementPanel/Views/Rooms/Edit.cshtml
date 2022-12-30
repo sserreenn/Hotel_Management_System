@@ -1,0 +1,260 @@
+﻿@model HotelManagementSystem.WebUI.Areas.ManagementPanel.Models.ViewModels.RoomViewModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card border-lg-top-primary">
+            <div class="card-body p-5">
+                <div class="card-title d-flex align-items-center">
+                    <div>
+                        <i class="bx bx-home mr-1 font-24 text-primary"></i>
+                    </div>
+                    <h4 class="mb-0 text-primary">Oda Düzenle</h4>
+
+                </div>
+                <hr>
+
+                @using(Html.BeginForm("Edit", "Rooms", FormMethod.Post, new { @enctype = "multipart/form-data" })) {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.RoomId)
+                        <div class="form-body">
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.Title, "Oda Adı", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-home"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Oda Adı" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.Size, "Boyut ", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-home"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.Size, new { htmlAttributes = new { @class = "form-control ", @placeholder = "Boyutu" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                @Html.Label("IsActive", "Durumu", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.DropDownListFor(c => c.IsActive, new SelectList(
+                                        new[]
+                                        {
+                                            new { Value = "true", Text = "Aktif" },
+                                            new { Value = "false", Text = "Pasif" },
+                                        },
+                                        "Value",
+                                        "Text",
+                                        1
+                                        ), new { @class = "form-control" })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.Code, "Oda Kodu", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-home"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.Code, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Oda Kodu" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.Characteristic, "Öne Çıkan Özellik", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-label"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.Characteristic, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Öne Çıkan Özellik" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.Characteristic, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-2">
+                                    <img src="@Model.ImageURL" width="200px" />
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label>Fotoğraf</label>
+                                    <input type="file" class="form-control" id="img" name="img">
+                                    @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.OrderNo, "Sırası", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-list-ol"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.OrderNo, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Sıra" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.OrderNo, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.MinPrice, "Min. Fiyat", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-money"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.MinPrice, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Min. Fiyat" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.MinPrice, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.MinPrice, "Max Fiyat", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-money"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.MaxPrice, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Max. Fiyat" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.MaxPrice, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.Label("CurrencyType", "Para Birimi", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(c => c.CurrencyType, new SelectList(
+                                            new[]
+                                            {
+                                                new { Value = "₺", Text = "TL" },
+                                                new { Value = "$", Text = "Dolar" },
+                                                new { Value = "€", Text = "Euro" },
+                                                new { Value = "£", Text = "Sterlin" },
+                                            },
+                                            "Value",
+                                            "Text",
+                                            1
+                                            ), new { @class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CurrencyType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.PersonCapacity, "Kişi Sayısı", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-group"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.PersonCapacity, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Kiş Sayısı" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.PersonCapacity, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.BedCapacity, "Yatak Sayısı", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-door-open"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.BedCapacity, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Oda Sayısı" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.BedCapacity, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-4">
+                                    @Html.LabelFor(model => model.BathCapacity, "Banyo Sayısı", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text bg-transparent"><i class="bx bx-bath"></i></span>
+                                        </div>
+                                        @Html.EditorFor(model => model.BathCapacity, new { htmlAttributes = new { @class = "form-control border-left-0", @placeholder = "Banyo Sayısı" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.BathCapacity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.BriefDescription, "Kısa Açıklama", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextArea("BriefDescription", Model.BriefDescription, 5, 0, new { @class = "form-control ckeditor", @id = "editor1" })
+                                @Html.ValidationMessageFor(model => model.BriefDescription, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Description, "Açıklama", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextArea("Description", Model.Description, 5, 0, new { @class = "form-control ckeditor", @id = "editor1" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+
+                            <hr />
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Rules, "Oda Kuralları", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextArea("Rules", Model.Rules, 5, 0, new { @class = "form-control ckeditor", @id = "editor1" })
+                                @Html.ValidationMessageFor(model => model.Rules, "", new { @class = "text-danger" })
+                            </div>
+
+                            <br />
+
+                            <div class="card radius-15">
+                                <div class="card-body">
+                                    <h6><b>Kategoriler</b></h6>
+                                    <hr />
+                                    @{
+                                        Html.RenderAction("_RoomCategories", "Rooms", new { roomId = Model.RoomId });
+                                    }
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="card radius-15">
+                                <div class="card-body">
+                                    <h6><b>Servisler</b></h6>
+                                    <hr />
+                                    @{
+                                        Html.RenderAction("_RoomServices", "Rooms", new { roomId = Model.RoomId });
+                                    }
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="card radius-15">
+                                <div class="card-body">
+                                    <h6><b>Hizmetler</b></h6>
+                                    <hr />
+                                    @{
+                                        Html.RenderAction("_RoomAmenities", "Rooms", new { roomId = Model.RoomId });
+                                    }
+                                </div>
+                            </div>
+                            <br />
+
+                            <div class="card radius-15">
+                                <div class="card-body">
+                                    <label>Fotoğraflar</label>
+                                    <hr />
+                                    <input class="" id="imgList" type="file" accept="image/*" multiple name="imgList">
+                                </div>
+                            </div>
+
+                            @{
+                                Html.RenderAction("_RoomImages", "Rooms", new { roomId = Model.RoomId });
+                            }
+
+
+                            <button type="submit" class="btn btn-primary px-5">Kaydet</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

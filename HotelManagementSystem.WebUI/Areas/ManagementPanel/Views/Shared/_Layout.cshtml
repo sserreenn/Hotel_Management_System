@@ -1,0 +1,47 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+
+<head>
+    @Html.Partial("_Head")
+</head>
+
+<body>
+    
+    <!-- wrapper -->
+    <div class="wrapper">
+        <!--sidebar-wrapper-->
+        @Html.Partial("_LeftMenu")
+        <!--end sidebar-wrapper-->
+        <!--header-->
+        @Html.Partial("_Header")
+        <!--end header-->
+        <!--page-wrapper-->
+        <div class="page-wrapper">
+            <!--page-content-wrapper-->
+            <div class="page-content-wrapper">
+                <div class="page-content">
+                    @RenderBody()
+                </div>
+            </div>
+            <!--end page-content-wrapper-->
+        </div>
+        <!--end page-wrapper-->
+        <!--start overlay-->
+        <div class="overlay toggle-btn-mobile"></div>
+        <!--end overlay-->
+        <!--Start Back To Top Button--> <a href="javaScript:;" class="back-to-top"><i class='bx bxs-up-arrow-alt'></i></a>
+        <!--End Back To Top Button-->
+        <!--footer -->
+        @Html.Partial("_Footer")
+        <!-- end footer -->
+    </div>
+    <!-- end wrapper -->
+ 
+    <!-- JavaScript -->
+    @Html.Partial("_Script")
+</body>
+
+
+<!-- Mirrored from codervent.com/syndash/demo/vertical/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sat, 06 Mar 2021 13:20:53 GMT -->
+</html>

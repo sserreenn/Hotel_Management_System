@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.FAQ>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<a class="btn btn-secondary" href="@Url.Action("Create", "FAQs")">Yeni Oluştur</a>
+<br /><br />
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Sık Sorulan Sorular</h4>
+        </div>
+        
+        <div class="table-responsive">
+            <table class="table mb-0">
+                <thead>
+                    <tr>
+                        <th scope="col">Soru</th>
+                        <th scope="col">Cevap</th>
+                        <th scope="col">Kayıt Tarihi</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) {
+                    <tr>
+                        <td width="25%">@item.Question</td>
+                        <td width="50%">@Html.Raw(item.Answer)</td>
+                        <td width="10%">@item.RegisterDate.Value.ToString("dd MMMM yyyy")</td>
+                        <td width="10%">
+                            @if(item.IsActive == true) {
+                                <p>Aktif</p>
+                            }
+                            else {
+                                <p>Pasif</p>
+                            }
+                        </td>
+                        <td width="5%">
+                            <a class="btn btn-warning" href="@Url.Action("Edit","FAQs", new { id = item.FAQId})">Düzenle</a>
+                            <a class="btn btn-primary" href="@Url.Action("Details", "FAQs", new { id = item.FAQId})">Detay</a>
+                        </td>
+                    </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+ 

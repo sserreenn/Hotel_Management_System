@@ -1,0 +1,58 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+    <a href="@Url.Action("Create","Users")" class="btn btn-primary right">Yeni Oluştur</a>
+</div>
+
+<br />
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Kullanıcılar</h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" width="15%">Ad Soyad</th>
+                        <th scope="col" width="20%">Telefon</th>
+                        <th scope="col" width="25%">Email</th>
+                        <th scope="col" width="25%">Adres</th>
+                        <th scope="col" width="5%">Kayıt Tarihi</th>
+                        <th scope="col" width="5%">Durumu</th>
+                        <th scope="col" width="5%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) {
+                    <tr>
+                        <td>@item.FullName</td>
+                        <td>@item.PhoneNumber</td>
+                        <td>@item.Email</td>
+                        <td>@item.Address</td>
+                        <td>@item.RegisterDate.Value.ToString("dd MMMM yyyy")</td>
+                        <td>
+                            @if(item.IsActive == true) {
+                                <p>Aktif</p>
+                            }
+                            else {
+                                <p>Pasif</p>
+                            }
+                        </td>
+                        <td>
+
+                            <a class="btn btn-warning m-1" href="@Url.Action("Edit", "Users", new { id = item.UserId })"> <i class="bx bx-pencil"></i> Düzenle </a> 
+                        <td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

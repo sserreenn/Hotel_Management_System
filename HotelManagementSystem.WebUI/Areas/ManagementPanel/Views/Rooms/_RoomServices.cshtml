@@ -1,0 +1,39 @@
+﻿
+@using HotelManagementSystem.WebUI.Models
+@model IEnumerable<HotelManagementSystem.WebUI.Models.ServiceByRoom>
+
+@{
+    var categories = TempData["ServiceIdList"] as List<Service>;
+}
+  
+
+@foreach(var item in categories) {
+    bool isExist = false;
+    if(Model != null) {
+        foreach(var categ in Model) {
+            if(categ.ServiceId == item.ServiceId) {
+                isExist = true;
+            }
+        }
+        if(isExist) {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input categorycheck" type="checkbox" id="@item.ServiceId" value="@item.ServiceId" name="serviceList" checked>
+                <label class="form-check-label" for="inlineCheckbox1">@item.Name</label>
+            </div>
+        }
+        else {
+            <div class="form-check form-check-inline">
+                <input class="form-check-input categorycheck" type="checkbox" id="@item.ServiceId" value="@item.ServiceId" name="serviceList">
+                <label class="form-check-label" for="inlineCheckbox1">@item.Name</label>
+            </div>
+        }
+    }
+    else {
+        <div class="form-check form-check-inline">
+            <input class="form-check-input categorycheck" type="checkbox" id="@item.ServiceId" value="@item.ServiceId" name="serviceList">
+            <label class="form-check-label" for="inlineCheckbox1">@item.Name</label>
+        </div>
+    }
+
+}
+

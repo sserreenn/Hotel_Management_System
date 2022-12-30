@@ -1,0 +1,154 @@
+﻿@model HotelManagementSystem.WebUI.Areas.ManagementPanel.Models.ViewModels.DashboardViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-3">
+        <div class="card radius-15 bg-linkedin">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.RoomCount </h2>
+                    </div>
+                    <div class="ml-auto font-35 text-white">
+                        <i class="bx bx-door-open"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Aktif Oda</p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        <div class="card radius-15 bg-secondary">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.ContactMessageCount</h2>
+                    </div>
+                    <div class="ml-auto font-35 text-white">
+                        <i class="bx bx-envelope"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Gelen Kutusu</p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        <div class="card radius-15 bg-dark">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.CategoryCount </h2>
+                    </div>
+                    <div class="ml-auto font-35 text-white">
+                        <i class="bx bx-table"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Kategoriler</p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 col-lg-3">
+        <div class="card radius-15 bg-facebook">
+            <div class="card-body">
+                <div class="d-flex align-items-center">
+                    <div>
+                        <h2 class="mb-0 text-white">@Model.UserCount </h2>
+                    </div>
+                    <div class="ml-auto font-35 text-white">
+                        <i class="bx bx-user"></i>
+                    </div>
+                </div>
+                <div class="d-flex align-items-center">
+                    <div>
+                        <p class="mb-0 text-white">Kullanıcı</p>
+                    </div> 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="row">
+    @foreach(var item in Model.RoomList) {
+        <div class="col-12 col-lg-4 col-xl-4">
+            <div class="card">
+                <img src="@item.ImageURL" class="card-img-top" alt="..." height="280">
+                <div class="card-body">
+                    <h5 class="card-title">@item.Title</h5>
+
+                    <div class="btn-group m-1" role="group">
+                        <a href="@Url.Action("Index", "Comments", new { roomId = item.RoomId })" class="btn btn-dark"> <i class="bx bx-comment"></i> <small>Yorumlar</small> </a>
+                        <a href="@Url.Action("Index", "Prices", new { roomId = item.RoomId })" class="btn btn-dark"> <i class="bx bx-money"></i> <small>Fiyatlar</small> </a>
+                    </div>
+
+                    @*<p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>*@
+
+                    <div class="table-responsive mt-2">
+                        <table class="table table-sm table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td><i class="bx bx-map mr-1 font-20 parent-icon icon-color-8"></i></td>
+                                    <td>@item.Title</td>
+                                    <td><i class="bx bx-time mr-1 font-20 parent-icon icon-color-1"></i></td>
+                                    <td>
+                                        @item.RegisterDate.Value.ToString("dd MMMM yyyy")
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bx bx-money mr-1 font-20 parent-icon icon-color-3"></i></td>
+                                    <td>@item.MinPrice ₺ - @item.MaxPrice ₺ </td>
+                                    <td><i class="bx bx-label mr-1 font-20 parent-icon icon-color-4"></i></td>
+                                    <td>@item.Characteristic</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bx bx-group mr-1 font-20 parent-icon icon-color-2"></i></td>
+                                    <td> @item.PersonCapacity</td>
+                                    <td><i class="bx bx-bed mr-1 font-20 parent-icon icon-color-6"></i></td>
+                                    <td>@item.BedCapacity</td>
+                                </tr>
+                                <tr>
+                                    <td><i class="bx bx-bath mr-1 font-20 parent-icon icon-color-7"></i></td>
+                                    <td>@item.BathCapacity </td>
+                                    <td><i class="bx bx-info-circle mr-1 font-20 parent-icon icon-color-5"></i></td>
+                                    <td>
+                                        <p class="card-text">
+
+                                            @if(item.IsActive == true) {
+                                                <small class="text-muted"><i class="bx bx-check mr-1 font-14 text-success"></i>Aktif</small>
+                                            }
+                                            else {
+                                                <small class="text-muted"><i class="bx bx-x mr-1 font-14 text-danger"></i>Pasif</small>
+                                            }
+
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <a class="btn btn-secondary btn-sm" href="@Url.Action("Details","Rooms", new { id = item.RoomId})"> <i class="bx bx-search-alt"></i> Detay </a>
+                    <a class="btn btn-warning btn-sm" href="@Url.Action("Edit","Rooms", new { id = item.RoomId})"> <i class="bx bx-pencil"></i>Düzenle </a>
+                    <a class="btn btn-danger btn-sm" href="@Url.Action("Delete","Rooms", new { id = item.RoomId})"> <i class="bx bx-trash"></i><b>Sil</b> </a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

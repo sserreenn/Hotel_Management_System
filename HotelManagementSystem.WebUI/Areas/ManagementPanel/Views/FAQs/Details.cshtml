@@ -1,0 +1,19 @@
+﻿@model HotelManagementSystem.WebUI.Models.FAQ
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-12 col-xl-12">
+        <div class="card radius-15">
+            <div class="card-body">
+                <h5 class="card-title">@Model.Question</h5>
+                <p class="text-justify">@Html.Raw(Model.Answer)</p> <a href="#" class="card-link">@Model.RegisterDate.Value.ToString("dd MMMM yyyy")</a>
+                
+            </div>
+        </div>
+    </div> 
+</div>
+ 

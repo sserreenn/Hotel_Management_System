@@ -1,0 +1,37 @@
+﻿@model HotelManagementSystem.WebUI.Models.Room
+
+@{
+    ViewBag.Title = "RoomDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            <div class="details">
+                <h2>@Model.Title</h2>
+                <div class="det_pic">
+                    <img src="@Model.ImageURL" alt="" class="center" />
+                </div>
+                <div class="det_text">
+                    <p class="para">@Html.Raw(Model.RoomDetail.Description) </p>
+                </div>
+                <br />
+                <h2>Hizmetler</h2>
+                <ul>
+                    @foreach(var item in Model.AmenityByRooms) {
+                        <li> @item.Amenity.Name </li>
+                    }
+                </ul>
+                <br />
+                <h2>Servisler</h2>
+                <ul>
+                    @foreach(var item in Model.ServiceByRooms) {
+                        <li> @item.Service.Name </li>
+                    }
+                </ul>
+
+            </div>
+        </div>
+    </div>
+</div>

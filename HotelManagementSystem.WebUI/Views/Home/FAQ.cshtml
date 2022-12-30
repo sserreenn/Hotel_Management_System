@@ -1,0 +1,23 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.FAQ>
+@{
+    ViewBag.Title = "FAQ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main_bg">
+    <div class="wrap">
+        <div class="main">
+            @foreach(var item in Model) {
+                <div class="details">
+                    <h2>@item.Question</h2>
+                    <div class="det_text">
+                        <p class="para">@Html.Raw(item.Answer)</p> 
+                    </div>
+                </div>
+                <br />
+            }
+
+        </div>
+    </div>
+</div>
+

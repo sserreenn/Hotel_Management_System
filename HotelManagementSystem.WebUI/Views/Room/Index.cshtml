@@ -1,0 +1,27 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.Room>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+
+<div class="main_bg">
+    <div class="wrap"> 
+        <div class="grids_of_3">
+            @foreach(var item in Model) {
+                <div class="grid1_of_3">
+                    <div class="grid1_of_3_img">
+                        <a href="@Url.Action("RoomDetails", "Room", new { id = item.RoomId})">
+                            <img src="@item.ImageURL" alt="" height="280" />
+                            @*<span class="next"> </span>*@
+                        </a>
+                    </div>
+                    <h4><a href="#">@item.Title<span>@item.MinPrice @item.CurrencyType</span></a></h4>
+                    @Html.Raw(item.BriefDescription)
+                </div>
+            }
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,49 @@
+﻿    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="~/Areas/ManagementPanel/Scripts/js/jquery.min.js"></script>
+<script src="~/Areas/ManagementPanel/Scripts/js/popper.min.js"></script>
+<script src="~/Areas/ManagementPanel/Scripts/js/bootstrap.min.js"></script>
+<!--plugins-->
+<script src="~/Areas/ManagementPanel/Content/plugins/simplebar/js/simplebar.min.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/metismenu/js/metisMenu.min.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/perfect-scrollbar/js/perfect-scrollbar.js"></script>
+<!-- Vector map JavaScript -->
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-2.0.2.min.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-world-mill-en.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-in-mill.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-us-aea-en.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-uk-mill-en.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/vectormap/jquery-jvectormap-au-mill.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/apexcharts-bundle/js/apexcharts.min.js"></script>
+<script src="~/Areas/ManagementPanel/Scripts/js/index2.js"></script>
+<!-- App JS -->
+<script src="~/Areas/ManagementPanel/Scripts/js/app.js"></script>
+
+
+<script src="~/Areas/ManagementPanel/Content/plugins/fancy-file-uploader/jquery.fileupload.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/fancy-file-uploader/jquery.iframe-transport.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/fancy-file-uploader/jquery.fancy-fileupload.js"></script>
+<script src="~/Areas/ManagementPanel/Content/plugins/Drag-And-Drop/dist/imageuploadify.min.js"></script>
+
+<!-- CALENDAR -->
+<script src="~/Areas/ManagementPanel/Content/plugins/fullcalendar/js/main.min.js"></script>
+
+<script>
+    $('#fancy-file-upload').FancyFileUpload({
+        params: {
+            action: 'fileuploader'
+        },
+        maxfilesize: 1000000
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $('#image-uploadify').imageuploadify();
+    })
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.ssimgList').imageuploadify();
+
+    })
+</script>

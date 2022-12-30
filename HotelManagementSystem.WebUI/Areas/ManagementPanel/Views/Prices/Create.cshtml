@@ -1,0 +1,89 @@
+﻿@model HotelManagementSystem.WebUI.Models.Price
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card border-lg-top-primary">
+            <div class="card-body p-5">
+                <div class="card-title d-flex align-items-center">
+                    <div>
+                        <i class="bx bx-money mr-1 font-24 text-primary"></i>
+                    </div>
+                    <h4 class="mb-0 text-primary">Fiyat Ekle</h4>
+                </div>
+                <hr>
+
+                @using(Html.BeginForm("Create", "Prices", FormMethod.Post, new { @enctype = "multipart/form-data" })) {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.Hidden("RoomId", (object)ViewBag.Room)
+
+                        <div class="form-body">
+                            <div class="form-row"> 
+                                <div class="form-group col-md-12">
+                                    @Html.LabelFor(model => model.MinAccommodationDay, "Min. Konaklama Süresi (gün)", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.MinAccommodationDay, new { htmlAttributes = new { @class = "form-control" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.MinAccommodationDay, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.AccommodationBeginDate, "Başlama Tarihi", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.AccommodationBeginDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.AccommodationBeginDate, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.AccommodationEndDate, "Bitiş Tarihi", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.AccommodationEndDate, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.AccommodationEndDate, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-row"> 
+                                <div class="form-group col-md-6">
+                                    @Html.LabelFor(model => model.PricePerWeek, "Haftalık Fiyat", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.EditorFor(model => model.PricePerWeek, new { htmlAttributes = new { @class = "form-control", @type = "number", @min = "0", @step = "0,01", @Value = "0" } })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.PricePerWeek, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group col-md-6">
+                                    @Html.Label("CurrencyType", "Para Birimi", htmlAttributes: new { @class = "control-label" })
+                                    <div class="input-group">
+                                        @Html.DropDownListFor(c => c.CurrencyType, new SelectList(
+                                            new[]
+                                            {
+                                                new { Value = "₺", Text = "TL" },
+                                                new { Value = "$", Text = "Dolar" },
+                                                new { Value = "€", Text = "Euro" },
+                                                new { Value = "£", Text = "Sterlin" },
+                                            },
+                                            "Value",
+                                            "Text",
+                                            1
+                                            ), new { @class = "form-control" })
+                                    </div>
+                                    @Html.ValidationMessageFor(model => model.CurrencyType, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary px-5">Kaydet</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> 

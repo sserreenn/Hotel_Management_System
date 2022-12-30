@@ -1,0 +1,58 @@
+﻿@model HotelManagementSystem.WebUI.Models.Comment
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+    <a href="@Url.Action("Edit","Comments", new { id = Model.CommentId})" class="btn btn-primary right">Düzenle</a>
+</div>
+
+<div class="row">
+    <div class="col-12 col-lg-6 col-xl-6 offset-lg-3 offset-xl-3">
+        <div class="card radius-15">
+            <div class="card-body">
+                <h5 class="card-title">@Model.FullName</h5>
+                <h6 class="card-subtitle mb-2">@Model.Email</h6>
+                <h6 class="card-subtitle mb-2">@Model.PhoneNumber</h6>
+                <p>
+                    <b>Villa Adı: </b> @Model.Room.Title
+                </p>
+                <p class="text-justify"><b>Yorum: </b> @Model.Message</p>
+
+                <p>
+                    <b>Servis Puanı: </b>
+                    @for(int i = 0; i < Model.ServiceReview; i++) {
+                        <a class="text-primary"> <i class="fadeIn animated bx bx-star"></i> </a>
+                    }
+                </p>
+                <p>
+                    <b>Temizlik Puanı: </b>
+                    @for(int i = 0; i < Model.CleaningReview; i++) {
+                        <a class="text-primary"> <i class="fadeIn animated bx bx-star"></i> </a>
+                    }
+                </p>
+                <p>
+                    <b>Genel Puan: </b>
+                    @for(int i = 0; i < Model.GeneralReview; i++) {
+                        <a class="text-primary"> <i class="fadeIn animated bx bx-star"></i> </a>
+                    }
+                </p>
+                <hr />
+
+                @if(Model.IsActive == true) {
+                    <a href="" class="card-link"> Aktif </a>
+                }
+                else {
+                    <a href="" class="card-link"> Pasif </a>
+                }
+
+                <a href="#" class="card-link">
+                    @Model.RegisterDate.Value.ToString("dd MMMM yyyy")
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

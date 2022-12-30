@@ -1,0 +1,93 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.Price>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+    <a href="@Url.Action("Create","Prices", new { roomId = ViewBag.Room })" class="btn btn-primary right">Yeni Oluştur</a>
+</div>
+
+<br />
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">@ViewBag.RoomName - Fiyat Tablosu</h4>
+            <div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+                <a class="btn btn-info right calendarbtn" id="@ViewBag.Room"><i class="bx bx-calendar"></i> Takvim</a>
+                <a class="btn btn-secondary right tablebtn" id="@ViewBag.Room"><i class="bx bx-table"></i> Tablo</a>
+            </div>
+        </div>
+        <div class="table-responsive tablediv">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th scope="col">H / G</th>
+                        <th scope="col">Başlangış Tarihi</th>
+                        <th scope="col">Bitiş Tarihi</th>
+                        <th scope="col">Min. Konaklama</th>
+                        <th scope="col">Haftalık Fiyat</th>
+                        <th scope="col">Gecelik Fiyat</th>
+                        <th scope="col">Durumu</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) {
+                        <tr>
+                            <th>
+                                <p>Haftalık</p>
+                            </th>
+                            <td>@item.AccommodationBeginDate.Value.ToString("dd MMMM yyyy")</td>
+                            <td>@item.AccommodationEndDate.Value.ToString("dd MMMM yyyy")</td>
+                            <td>@item.MinAccommodationDay gün</td>
+                            <td>@item.PricePerWeek @item.CurrencyType</td>
+                            <td>@{ var priceperday = item.PricePerWeek / 7;} @priceperday @item.CurrencyType</td>
+                            <td>
+                                @if(item.IsActive == true) {
+                                    <p>Aktif</p>
+                                }
+                                else {
+                                    <p>Pasif</p>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-warning m-1" href="@Url.Action("Edit", "Prices", new { id = item.PriceId })"> <i class="bx bx-pencil"></i> Düzenle </a>
+                            </td>
+                        </tr>
+
+                    }
+
+                </tbody>
+            </table>
+        </div>
+
+        <div class="card calendardiv">
+            @{
+                Html.RenderAction("_Calendar", "Prices", new { roomId = ViewBag.Room });
+            } 
+        </div>
+
+    </div>
+</div>
+
+
+<script>
+    $(function () {
+        $(".calendardiv").hide();
+
+        $(".calendarbtn").click(function (e) {
+
+            $(".tablediv").hide();
+            $(".calendardiv").show();
+        });
+
+        $(".tablebtn").click(function (e) {
+            $(".tablediv").show();
+            $(".calendardiv").hide();
+        });
+    });
+</script>

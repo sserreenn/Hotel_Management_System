@@ -1,0 +1,101 @@
+﻿@model HotelManagementSystem.WebUI.Models.Contact
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-12 col-lg-12">
+        <div class="card border-lg-top-primary">
+            <div class="card-body p-5">
+                <div class="card-title d-flex align-items-center">
+                    <div>
+                        <i class="bx bxs-phone mr-1 font-24 text-primary"></i>
+                    </div>
+                    <h4 class="mb-0 text-primary">İletişim Düzenle</h4>
+                </div>
+                <hr>
+
+                @using(Html.BeginForm("Edit", "Contacts", FormMethod.Post, new { @enctype = "multipart/form-data" })) {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.ContactId)
+
+                        <div class="form-body">
+
+                            <img src="@Model.ImageURL" width="200px" />
+                            <div class="form-group">
+                                <label>Fotoğraf</label>
+                                <input type="file" class="form-control" id="img" name="img">
+                                @Html.ValidationMessageFor(model => model.ImageURL, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.PhoneNumber, "Telefon No", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent"><i class="bx bx-phone"></i></span>
+                                    </div>
+                                    @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control border-left-0" } })
+                                    @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Email, "Email", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text bg-transparent"><i class="bx bx-envelope"></i></span>
+                                    </div>
+                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control border-left-0", @type = "email" } })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Address, "Adres", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextArea("Address", Model.Address, 5, 0, new { @class = "form-control ckeditor", @id = "editor1" })
+                                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.ZipCode, "Posta Kodu", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.ZipCode, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.ZipCode, "", new { @class = "text-danger" })
+                            </div>
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Map, "Harita Koordinatları", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.Map, new { htmlAttributes = new { @class = "form-control" } })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Map, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group">
+                                @Html.LabelFor(model => model.Title, "Başlık", htmlAttributes: new { @class = "control-label" })
+                                <div class="input-group">
+                                    @Html.EditorFor(model => model.Title, new { htmlAttributes = new { @class = "form-control " } })
+                                </div>
+                                @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                            </div>
+
+                            <div class="form-group ">
+                                @Html.LabelFor(model => model.Description, "Description", htmlAttributes: new { @class = "control-label" })
+                                @Html.TextArea("Address", Model.Description, 5, 0, new { @class = "form-control ckeditor", @id = "editor1" })
+                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                            </div>
+
+                            <button type="submit" class="btn btn-primary px-5">Kaydet</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div> 

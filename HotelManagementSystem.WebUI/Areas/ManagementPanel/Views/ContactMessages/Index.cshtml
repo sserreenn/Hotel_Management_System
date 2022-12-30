@@ -1,0 +1,42 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.ContactMessage>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Gelen Mesajlar</h4>
+        </div>
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" width="20%">Adı Soyadı</th>
+                        <th scope="col" width="15%">Telefon</th>
+                        <th scope="col" width="20%">Email</th>
+                        <th scope="col" width="15%">Tarih</th>
+                        <th scope="col" width="25%">Konu</th>
+                        <th scope="col" width="5%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) {
+                        <tr>
+                            <td>@item.FullName</td>
+                            <td>@item.Phone</td>
+                            <td>@item.Email</td>
+                            <td>@item.RegisterDate.Value.ToString("dd MMMM yyyy")</td>
+                            <td>@item.Subject </td>
+                            <td>
+                                <a class="btn btn-secondary m-1" href="@Url.Action("Details", "ContactMessages", new { id = item.ContactMessageId })"> <i class="bx bx-info-circle"></i> Detay </a>
+                            <td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div> 

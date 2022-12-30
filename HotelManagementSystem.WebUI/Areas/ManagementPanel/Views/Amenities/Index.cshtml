@@ -1,0 +1,57 @@
+﻿@model IEnumerable<HotelManagementSystem.WebUI.Models.Amenity>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: right;">
+    <a href="@Url.Action("Create","Amenities")" class="btn btn-primary right">Yeni Oluştur</a>
+
+</div>
+
+<br />
+
+<div class="card radius-15">
+    <div class="card-body">
+        <div class="card-title">
+            <h4 class="mb-0">Oda Hizmetleri</h4>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th scope="col" width="20%">Resim</th>
+                        <th scope="col" width="30%">Adı</th>
+                        <th scope="col" width="20%">Kayıt Tarihi</th>
+                        <th scope="col" width="20%">Durumu</th>
+                        <th scope="col" width="10%"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach(var item in Model) {
+                        <tr>
+                            <td><img src="@item.ImageURL" width="100px" /></td>
+                            <td>@item.Name</td>
+                            <td>@item.RegisterDate.Value.ToString("dd MMMM yyyy")</td>
+                            <td>
+                                @if(item.IsActive == true) {
+                                    <p>Aktif</p>
+                                }
+                                else {
+                                    <p>Pasif</p>
+                                }
+                            </td>
+                            <td>
+                                <a class="btn btn-warning m-1" href="@Url.Action("Edit", "Amenities", new { id = item.AmenityId })"> <i class="bx bx-pencil"></i> Düzenle </a>
+
+                            <td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

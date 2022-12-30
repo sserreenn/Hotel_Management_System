@@ -1,0 +1,303 @@
+﻿@model HotelManagementSystem.WebUI.Models.Room
+
+@{
+    ViewBag.Title = "Delete";
+    Layout = "~/Areas/ManagementPanel/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="toolbar toolbar-top" role="toolbar" style="text-align: left;">
+
+    @using(Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+        <div class="form-actions no-color">
+            <input type="submit" value="Sil" class="btn btn-danger btn-lg right" />
+        </div>
+    }
+
+</div>
+
+<br />
+
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <a href="" style="text-align:left;">
+                            <img src="@Model.ImageURL" width="180" class="rounded ml-3 shadow" alt="">
+                        </a>
+                    </div>
+                    <div class="col-6">
+                        <div class="card radius-15 bg-light">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h4 class="mb-0 font-weight-bold text-dark">@Model.Size m<sup>2</sup></h4>
+                                        <p class="mb-0 text-dark">Boyutu</p>
+                                    </div>
+                                    <div class="font-35 text-dark">
+                                        <i class="bx bx-box"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <br />
+                <div class="row">
+                    <div class="col-12 col-lg-3 col-md-6">
+                        <div class="card radius-15 bg-light">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h4 class="mb-0 font-weight-bold text-dark">@Model.Title</h4>
+                                        <p class="mb-0 text-dark">Adı</p>
+                                    </div>
+                                    <div class="font-35 text-dark">
+                                        <i class="bx bx-label"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 col-md-6">
+                        <div class="card radius-15 bg-light">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h4 class="mb-0 font-weight-bold text-dark">@Model.Code</h4>
+                                        <p class="mb-0 text-dark">Oda Kodu</p>
+                                    </div>
+                                    <div class="font-35 text-dark">
+                                        <i class="bx bx-map"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 col-md-6">
+                        <div class="card radius-15 bg-light">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+
+                                        @foreach(var item in Model.RoomByCategories) {
+                                            <h6 class="mb-0 font-weight-bold text-dark">@item.Category.Name</h6>
+                                        }
+                                        <p class="mb-0 text-dark">Kategoriler</p>
+                                    </div>
+                                    <div class="font-35 text-dark">
+                                        <i class="bx bx-table"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-3 col-md-6">
+                        <div class="card radius-15 bg-light">
+                            <div class="card-body">
+                                <div class="media align-items-center">
+                                    <div class="media-body">
+                                        <h4 class="mb-0 font-weight-bold text-dark">@Model.Characteristic</h4>
+                                        <p class="mb-0 text-dark">Öne Çıkan Özelliği</p>
+                                    </div>
+                                    <div class="font-35 text-dark">
+                                        <i class="bx bx-star"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-primary text-primary rounded-circle">
+                                    <i class="bx bx-group"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.PersonCapacity</h4>
+                                <p class="mb-0">Kişi</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-warning text-warning  rounded-circle">
+                                    <i class="bx bx-bed"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.BedCapacity</h4>
+                                <p class="mb-0">Oda</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-info text-info rounded-circle">
+                                    <i class="bx bx-bath"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.BathCapacity</h4>
+                                <p class="mb-0">Banyo</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-success text-success rounded-circle">
+                                    <i class="bx bx-money"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.MinPrice ₺</h4>
+                                <p class="mb-0">Min. Ücret</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-success text-success rounded-circle">
+                                    <i class="bx bx-money"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.MaxPrice ₺</h4>
+                                <p class="mb-0">Max. Ücret</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-2 col-md-4">
+                        <div class="card radius-15">
+                            <div class="card-body text-center">
+                                <div class="widgets-icons mx-auto bg-light-danger text-danger rounded-circle">
+                                    <i class="bx bx-list-ol"></i>
+                                </div>
+                                <h4 class="mb-0 font-weight-bold mt-3">@Model.OrderNo</h4>
+                                <p class="mb-0">Sırası</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Açıklama</h5>
+                                <p class="text-justify">@Html.Raw(Model.RoomDetail.Description)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Ev Kuralları</h5>
+                                <p class="text-justify">@Html.Raw(Model.RoomDetail.Rules)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Oda Hizmetleri</h5>
+                                @foreach(var item in Model.AmenityByRooms) {
+                                    <p class="mb-0  text-dark">@item.Amenity.Name</p>
+                                }
+                                @*<p class="text-justify">@Html.Raw(Model.VillaDetail.ImportantFeatures)</p>*@
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Oda Servisleri</h5>
+                                @foreach(var item in Model.ServiceByRooms) {
+                                    <p class="mb-0  text-dark">@item.Service.Name</p>
+                                }
+                                @*<p class="text-justify">@Html.Raw(Model.VillaDetail.GeneralFeatures)</p>*@
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Fiyat Tablosu</h5>
+                                <table class="table table-striped">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col"></th>
+                                            <th scope="col">Başlangış Tarihi</th>
+                                            <th scope="col">Bitiş Tarihi</th>
+                                            <th scope="col">Min. Konaklama</th>
+                                            <th scope="col">Haftalık Fiyat</th>
+                                            <th scope="col">Gecelik Fiyat</th>
+                                            <th scope="col">Durumu</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach(var item in Model.Prices) {
+                                            <tr>
+                                                <th>
+                                                    <p>Haftalık</p>
+
+                                                </th>
+                                                <td>@item.AccommodationBeginDate.Value.ToString("dd MMMM yyyy")</td>
+                                                <td>@item.AccommodationEndDate.Value.ToString("dd MMMM yyyy")</td>
+                                                <td>@item.MinAccommodationDay gün</td>
+                                                <td>@item.PricePerWeek ₺</td>
+                                                <td>@item.PricePerWeek ₺</td>
+                                                <td>
+                                                    @if(item.IsActive == true) {
+                                                        <p>Aktif</p>
+                                                    }
+                                                    else {
+                                                        <p>Pasif</p>
+                                                    }
+                                                </td>
+                                            </tr>
+
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-xl-12">
+                        <div class="card radius-15">
+                            <div class="card-body">
+                                <h5 class="card-title">Villa Fotoğrafları</h5>
+                                <a href="">
+                                    <img src="@Model.ImageURL" height="180" class="rounded ml-3 shadow" alt="">
+                                </a>
+
+                                @foreach(var item in Model.Images) {
+                                    <a href="">
+                                        <img src="@item.ImageURL" height="180" class="rounded ml-3 shadow" alt="">
+                                    </a>
+                                }
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
